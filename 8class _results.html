@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 8 Mark List Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
+        
+        /* സൈഡ് മെനുവിന്റെ സ്റ്റൈൽ (ആദ്യം ഇത് മറഞ്ഞിരിക്കും) */
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        /* സൈഡ് മെനുവിലുള്ള ലിങ്കുകൾ */
+        .side-menu a {
+            padding: 12px 12px 12px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #007bff;
+        }
+
+        /* മെനു ക്ലോസ് ചെയ്യാനുള്ള 'X' ബട്ടൺ */
+        .side-menu .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+        }
+
+        /* മൂന്ന് ഡോട്ട് മെനു ബട്ടൺ */
+        .menu-btn {
+            font-size: 22px;
+            cursor: pointer;
+            background-color: #548dc5;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        input[type="text"] { flex: 1; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 12px 20px; background-color: #6283a7; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #adbecf; }
+        .result-card { border: 1px solid #e0e0e0; padding: 20px; border-radius: 6px; background: #fafafa; display: none; }
+        .result-card h3 { margin-top: 0; color: #007bff; }
+        .mark-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .mark-table th, .mark-table td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        .mark-table th { background-color: #007bff; color: white; }
+        .visitor-count { text-align: right; font-size: 14px; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<!-- മെനു തുറക്കാനുള്ള മൂന്ന് ഡോട്ട് ബട്ടൺ -->
+<button class="menu-btn" onclick="openMenu()">&#9776;</button>
+
+<!-- സൈഡ് മെനു ലിസ്റ്റ് (ഇത് ക്ലിക്ക് ചെയ്യുമ്പോൾ മാത്രം സൈഡിൽ നിന്ന് തുറന്നു വരും) -->
+<div id="mySideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="usthad.html#home" onclick="closeMenu()">Home</a>
+    <a href="usthad.html#muallim" onclick="closeMenu()">Usthadhs</a>
+    <a href="usthad.html#students" onclick="closeMenu()">Students</a>
+    <a href="usthad.html#management" onclick="closeMenu()">Management</a>
+    <a href="class8_results.html" onclick="closeMenu()">Exam Results</a>
+</div>
+<div class="container">
+    <h2>Half-yearly exam results</h2>
+    
+    <div class="search-box">
+        <input type="text" id="studentName" placeholder="The student's name must be written strictly in CAPITAL LETTERS">
+        <button onclick="searchMarks()">Search</button>
+    </div>
+
+    <div id="resultCard" class="result-card">
+        <h3 id="resName"></h3>
+        <table class="mark-table">
+            <tr>
+                <th>Hifz Quran</th>
+                <th>Quran</th>
+                <th>Fiqh</th>
+                <th>Thareekh</th>
+                <th>Tarbiyyathul Awlad</th>
+                <th>TOTAL</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td id="m1">-</td>
+                <td id="m2">-</td>
+                <td id="m3">-</td>
+                <td id="m4">-</td>
+                <td id="m5">-</td>
+                <td id="m6">-</td>
+                <td id="m7">-</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="visitor-count">
+        Total visitors: <span id="visitCount">124</span>
+    </div>
+</div>
+
+<script>
+    // സൈഡ് മെനു ഓപ്പൺ ചെയ്യാനും ക്ലോസ് ചെയ്യാനുമുള്ള ഫംഗ്ഷനുകൾ
+    function openMenu() {
+        document.getElementById("mySideMenu").style.width = "250px";
+    }
+
+    function closeMenu() {
+        document.getElementById("mySideMenu").style.width = "0";
+    }
+
+    // വിദ്യാർത്ഥികളുടെ മാർക്ക് ഡാറ്റ
+    const studentData = [
+        { name: "ABIN SHAUMAR", m1: 44, m2: 39, m3: 40, m4: 47, m5: 46, total: 216, per: "86.67%" },
+        { name: "AINAS", m1: 21, m2: 23, m3: 38, m4: 35, m5: 41, total: 158, per: "63.20%" },
+        { name: "MAHMOON", m1: 31, m2: 23, m3: 44, m4: 43, m5: 43, total: 227, per: "75.67%" },
+        { name: "MUHAMMAD HANAN CH", m1: 30, m2: 34, m3: 35, m4: 43, m5: 40, total: 230, per: "76.33%" },
+        { name: "MUHAMMAD MAZIN", m1: 36, m2: 30, m3: 32, m4: 42, m5: 42, total: 222, per: "74.00%" },
+        { name: "MUHAMMAD MISBAH", m1: 23, m2: 25, m3: 41, m4: 33, m5: 44, total: 216, per: "71.67%" },
+        { name: "MUHAMMAD NARHAN", m1: 27, m2: 30, m3: 43, m4: 33, m5: 46, total: 222, per: "74.00%" },
+        { name: "SHAHDAN SHAH", m1: 34, m2: 30, m3: 40, m4: 30, m5: 38, total: 214, per: "71.33%" },
+        { name: "SHAMMAS", m1: 35, m2: 31, m3: 32, m4: 43, m5: 40, total: 227, per: "75.67%" },
+        { name: "SHAZIN", m1: 31, m2: 31, m3: 42, m4: 45, m5: 46, total: 245, per: "81.67%" },
+        { name: "ARMIYA FATHIMA", m1: 30, m2: 34, m3: 33, m4: 25, m5: 35, total: 198, per: "66.00%" },
+        { name: "FATHMIA RIDA", m1: 44, m2: 40, m3: 41, m4: 40, m5: 50, total: 256, per: "85.33%" },
+        { name: "HANNA FATHIMA M", m1: 34, m2: 34, m3: 45, m4: 43, m5: 44, total: 247, per: "82.33%" },
+        { name: "FATHIMA MARWA", m1: 34, m2: 30, m3: 39, m4: 35, m5: 31, total: 212, per: "70.67%" },
+        { name: "FATHIMA SHAHDA", m1: 40, m2: 40, m3: 40, m4: 39, m5: 42, total: 250, per: "83.33%" },
+        { name: "MARIYAM", m1: 22, m2: 30, m3: 24, m4: 16, m5: 22, total: 144, per: "48.00%" },
+        { name: "HANNA FATHIMA KM", m1: 21, m2: 37, m3: 35, m4: 30, m5: 42, total: 210, per: "70.00%" },
+        { name: "FATHIMA LIYANA", m1: 38, m2: 41, m3: 40, m4: 40, m5: 43, total: 248, per: "82.67%" },
+        { name: "RITHAJ", m1: 36, m2: 30, m3: 38, m4: 35, m5: 40, total: 220, per: "73.33%" },
+        { name: "TANIHA FATHIMA", m1: 36, m2: 40, m3: 39, m4: 35, m5: 43, total: 236, per: "78.67%" },
+        { name: "AZA BANAFSHA", m1: 31, m2: 39, m3: 39, m4: 43, m5: 44, total: 240, per: "80.00%" }
+    ];
+
+    // Visitor Counter Code
+    let visits = localStorage.getItem('pageVisits') || 124;
+    if (!sessionStorage.getItem('counted')) {
+        visits++;
+        localStorage.setItem('pageVisits', visits);
+        sessionStorage.setItem('counted', 'true');
+    }
+    document.getElementById('visitCount').innerText = visits;
+
+    function searchMarks() {
+        let query = document.getElementById('studentName').value.trim().toUpperCase();
+        let card = document.getElementById('resultCard');
+        
+        let found = studentData.find(s => s.name.toUpperCase() === query);
+
+        if (found) {
+            document.getElementById('resName').innerText = "Student Name: " + found.name;
+            document.getElementById('m1').innerText = found.m1;
+            document.getElementById('m2').innerText = found.m2;
+            document.getElementById('m3').innerText = found.m3;
+            document.getElementById('m4').innerText = found.m4;
+            document.getElementById('m5').innerText = found.m5;
+            document.getElementById('m6').innerText = found.total;
+            document.getElementById('m7').innerText = found.per;
+            card.style.display = "block";
+        } else {
+            alert("Student not found. Please check the spelling.");
+            card.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

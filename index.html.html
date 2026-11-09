@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <title>മദാരിജുൽ ഉലൂം സെക്കൻഡറി മദ്രസ മങ്കട, പള്ളിപ്പുറം - ഹോം പേജ്</title>
+    <style>/* സൈഡ് മെനുവിന്റെ സ്റ്റൈൽ */
+.side-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+}
+
+.side-menu a {
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #0d5c3a;
+    display: block;
+    transition: 0.2s;
+}
+
+.side-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.side-menu .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+}
+
+/* മെനു തുറക്കാനുള്ള ബട്ടൺ */
+.menu-btn {
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #0d5c3a;
+    padding: 10px;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #000000;
+        }
+        /* മുകളിലെ മെനു ബാർ (മൂന്ന് ഡോട്ടുകൾ) */
+        nav {
+            background-color: #0d5c3a;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        /* ഹെഡർ ഭാഗം */
+        header {
+            background-color: #12794c;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        /* പ്രധാന കണ്ടെയ്നർ */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        /* മദ്രസ ഫോട്ടോയ്ക്ക് വേണ്ടിയുള്ള സ്റ്റൈൽ */
+        .madrasa-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #0d5c3a;
+            border-bottom: 2px solid #0d5c3a;
+            padding-bottom: 5px;
+            text-align: left;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .address-box {
+            background: #e9f5ef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body> <!-- മെനു തുറക്കാനുള്ള ബട്ടൺ (Navbar-ൽ ചേർക്കുക) -->
+<button class="menu-btn" onclick="openMenu()">☰</button>
+
+<!-- സൈഡ് മെനു ലിങ്ക് ലിസ്റ്റ് -->
+<div id="mySideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#muallim" onclick="closeMenu()">Usthadhs</a>
+    <a href="#students" onclick="closeMenu()">Students</a>
+    <a href="#management" onclick="closeMenu()">Management</a>
+    <a href="8class _results.html" onclick="closeMenu()" style="background-color: #007bff; color: white;">Exam Results</a>
+</div>    </nav>
+
+    <!-- ഹോം പേജ് (ഫോട്ടോ, പേര്, അഡ്രസ്സ്) -->
+    <div class="container" id="home">
+        <header style="margin: -25px -25px 20px -25px; border-radius: 8px 8px 0 0;">
+            <h1>മദാരിജുൽ ഉലൂം സെക്കൻഡറി മദ്രസ മങ്കട, പള്ളിപ്പുറം</h1>
+            <p>വിജ്ഞാനത്തിന്റെയും സംസ്കാരത്തിന്റെയും കേന്ദ്രം</p>
+        </header>
+
+        <!-- മദ്രസയുടെ ഫോട്ടോ വെക്കുന്ന സ്ഥലം (src ന്റെ ഉള്ളിൽ ഫോട്ടോയുടെ പേര് നൽകുക) -->
+        <img src="'madrasa-photo.jpg" alt="മദ്രസയുടെ ചിത്രം" class="madrasa-img">
+        <p style="color: gray; font-size: 14px;"></p>
+
+        <h2>സ്ഥാപനത്തെക്കുറിച്ച്</h2>
+        <p style="text-align: justify;">കുട്ടികൾക്ക് മതപരമായ അടിസ്ഥാന വിദ്യാഭ്യാസവും സദാചാര പാഠങ്ങളും പകർന്നു നൽകി മികച്ച ഒരു സമൂഹത്തെ വാർത്തെടുക്കാൻ വേണ്ടി സമസ്ത കേരള ഇസ്ലാം മത വിദ്യാഭ്യാസ ബോർഡിന്റെ കീഴിൽ പ്രവർത്തിക്കുന്ന സ്ഥാപനമാണിത്.</p>
+
+        <div class="address-box">
+            <h3>മങ്കട, പള്ളിപ്പുറം</h3>
+            <p><strong>addres:</address>:</strong>മദാരിജുൽ ഉലൂം സെക്കൻഡറി മദ്രസ , പി.ഒ. മങ്കട, മലപ്പുറം ജില്ല.</p>
+            <p><strong>phone number:</strong>9946492650</p>
+        </div>
+    </div>
+
+    <!-- ഉസ്താദുമാരുടെ വിവരങ്ങൾ -->
+    <div class="container" id="usthadukal">
+
+        <!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <title>മുഅല്ലിമീങ്ങൾ - മദ്രാജുൽ ഉലൂം</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .usthad-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+        .usthad-card { background: white; padding: 20px; border-radius: 10px; text-align: center; width: 220px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
+        .usthad-card:hover { transform: scale(1.05); }
+        .usthad-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid #0d5c3a; }
+        .usthad-card h3 { font-size: 16px; color: #0d5c3a; margin: 0; }
+        .usthad-card p { font-size: 14px; color: #666; margin-top: 5px; }
+    </style>
+
+<body>
+
+<h2 style="text-align: center; color: #0d5c3a; font-size: 28px; font-weight: bold; margin-bottom: 20px;">ഉസ്താദുമാർ</h2>
+    <div class="usthad-grid">
+        <a href="muhammed musliyar.html" style="text-decoration: none; color: inherit;">
+    <div class="usthad-card">
+        <img src="muhammed musliyar.jpg" alt="Muhammed Musliyar">
+        <h3>മുഹമ്മദ് മുസ്ലിയാർ</h3>
+        <p>ചുമതല: ക്ലാസ് 05, 09</p>📱9946492650
+    </div>
+            <!-- ഉസ്താദ് 5 -->
+        <a href="saidalavi.html" style="text-decoration: none; color: inherit;">
+    <div class="usthad-card">
+        <img src="saidalavi.jpg" alt="Saidalavi Faizy">
+        <h3>Saidalavi Faizy</h3>
+        <p>ചുമതല: ക്ലാസ് 04,10</p>📱9495711761
+    </div>
+
+</a>
+        <!-- ബാക്കി 4 ഉസ്താദുമാർക്കും ഇതുപോലെ താഴെ കോപ്പി ചെയ്ത് മാറ്റങ്ങൾ വരുത്താം -->
+        <!-- ഉസ്താദ് 2 -->
+<!-- ഉസ്താദ് 1: മുഹമ്മദ് അൻവർ ജലാലി -->
+        <a href="anwar.html" style="text-decoration: none; color: inherit;">
+    <div class="usthad-card">
+        <img src="anwar.jpg" alt="Anwar">
+        <h3>മുഹമ്മദ് അൻവർ ജലാലി</h3>
+        <p>ക്ലാസ് 01, 08</p>📱7034100871
+</a></a>
+
+        <!-- ഉസ്താദ് 3 -->
+    <a href="rasheedmusliyar.html" style="text-decoration: none; color: inherit;">
+    <div class="usthad-card">
+        <img src="rasheed.jpg" alt="Rasheed Usthad">
+        <h3>റഷീദ് ഉസ്താദ്</h3>
+        <p>ചുമതല: ക്ലാസ് 03,07</p>📱9846027534
+    </div>
+</a>
+        <!-- ഉസ്താദ് 4 -->
+        <a href="beerankutty.html" style="text-decoration: none; color: inherit;">
+    <div class="usthad-card">
+        <img src="beerankutty.jpg" alt="Usthad 4">
+        <h3>നാലാമത്തെ ഉസ്താദ്</h3>
+        <p>ചുമതല: ക്ലാസ് 02,06</p>📱9633757622
+    </div>
+</a>
+
+</div>
+
+<!-- വിദ്യാർത്ഥികളുടെ വിവരങ്ങൾ -->
+    <div class="container" id="students">
+        <h2>students details </details></h2>
+        <ul>
+            <li>class     01 - 18 students</li>
+            <li>class     02    - 10 students</li>
+            <li>class     03    - 16 students</li>
+            <li>class     04    - 13 students</li>  
+            <li>class     05    - 12 students</li>
+            <li>class     06    - 14 students</li>
+            <li>class     07    - 25 students</li>
+            <li>class     08     -21 students</li>
+            <li>class     09     -15 students</li>
+            <li>class     10    -08 students</li>
+    
+        </ul>
+    </div>
+
+</body><script>
+function openMenu() {
+    document.getElementById("mySideMenu").style.width = "250px";
+}
+
+function closeMenu() {
+    document.getElementById("mySideMenu").style.width = "0";
+}
+</script>
+</html>
